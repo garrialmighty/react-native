@@ -9,35 +9,24 @@ class Login extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Login',
-    headerTintColor: 'white',
-    headerStyle: { backgroundColor: 'orange' },
-    headerRight: (<Button
-      title='Go To Main'
-      onPress={() => {
-        const route = (Platform.OS === 'ios') ? 'iOSScanner' : 'AndroidScanner'
-        const { navigate } = navigation
-        navigate(route)
+    headerTintColor: 'green',
+    headerStyle: { backgroundColor: 'white' },
+    headerRight: (
+      <Button
+        title='Go To Main'
+        onPress={() => {
+          const route = (Platform.OS === 'ios') ? 'iOSScanner' : 'AndroidScanner'
+          const { navigate } = navigation
+          navigate(route)
         }
-      }
-    />)
+        }
+      />
+    )
   })
 
   render() {
-    const source = { uri: 'https://bouncer.outcome-hub.com/auth/realms/channel40/account' }
-    const redirectURL = 'https://bouncer.outcome-hub.com/auth/realms/channel40/account/login-redirect?'
-
-    // call getCurrentPosition to force Android to request access
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        this.setState({
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-          error: null,
-        });
-      },
-      (error) => this.setState({ error: error.message }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
-    )
+    const source = { uri: 'https://bouncer.outcome-hub.com/auth/realms/genny/account' }
+    const redirectURL = 'https://bouncer.outcome-hub.com/auth/realms/genny/account/login-redirect?'
 
     return (
       <WebView
